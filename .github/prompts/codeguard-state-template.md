@@ -16,6 +16,30 @@ updates ONLY their section at the end of their pass.
 No agent touches another agent's section.
 
 ═══════════════════════════════════════
+PATH CONVENTION — READ THIS FIRST
+═══════════════════════════════════════
+
+There are two ways to reference the state file directory
+depending on who is doing the referencing:
+
+  AGENT PROMPTS (Sofia, Marcus, Priya, Dana, Eric):
+    Reference: .codeguard/
+    Reason: agents run from inside repo-scg/ as their
+            working directory, so .codeguard/ resolves
+            to repo-scg/.codeguard/ at runtime
+
+  ORCHESTRATOR (when created):
+    Reference: repo-scg/.codeguard/
+    Reason: the orchestrator runs from the repo root
+            and must use the full path from there
+
+These two references point to the SAME physical directory:
+  repo-scg/.codeguard/
+
+Never store state files at the repo root .codeguard/ —
+they always live under repo-scg/.codeguard/.
+
+═══════════════════════════════════════
 STATE FILE TEMPLATE
 ═══════════════════════════════════════
 
