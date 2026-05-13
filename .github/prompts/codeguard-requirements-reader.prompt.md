@@ -24,6 +24,50 @@ the user must run and set status to blocked_pending_terminal.
 You never assume something is implemented until you see evidence.
 
 ═══════════════════════════════════════
+CODE REFERENCE RESOLUTION
+═══════════════════════════════════════
+
+The migration plan (plan.md) will contain references to
+actual code — class names, method names, file paths, and
+line numbers. You must follow these references.
+
+When you see a reference in plan.md like:
+- A class name: CorrelationIdWebFilter
+- A file path: src/main/java/.../CorrelationIdWebFilter.java
+- A method name: filter(), getOrder()
+- A line number: line 42
+
+Do this:
+1. Search for that file in repo-legacy/ first
+   (this is the old implementation — understand what it does)
+2. Search for the equivalent file in repo-scg/
+   (this is the new implementation — what should be there)
+3. Read both files at the referenced lines
+4. Use what you find to make your requirements MORE specific
+
+Example:
+  plan.md says: "migrate CorrelationIdWebFilter to SCG"
+  You find: repo-legacy/src/.../CorrelationIdWebFilter.java
+  You read it and discover it:
+    - adds X-Correlation-ID header to every request
+    - generates UUID if header is missing
+    - getOrder() returns -100
+  You then produce requirements:
+    REQ-001: GlobalFilter adds X-Correlation-ID header
+    REQ-002: UUID generated when header is absent
+    REQ-003: getOrder() returns -100
+
+This makes Marcus's review precise — he knows exactly
+what to look for in repo-scg/.
+
+IMPORTANT:
+- repo-legacy/ is READ ONLY — never suggest changes there
+- If a referenced file does not exist in repo-scg/ yet:
+  mark the requirement as MISSING and flag it as a gap
+- If a referenced file exists in repo-scg/ but differs
+  from plan.md spec: note the difference for Marcus
+
+═══════════════════════════════════════
 STATE FILE PROTOCOL
 ═══════════════════════════════════════
 
