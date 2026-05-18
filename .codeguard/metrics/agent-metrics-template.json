@@ -1,0 +1,17 @@
+{
+    "run_id": "",
+    "agent": "",
+    "prompt_version": "",
+    "model": "",
+    "task": "",
+    "token_input": 0,
+    "token_output": 0,
+    "duration_ms": 0,
+    "compile_pass": false,
+    "tests_pass": false,
+    "retry_count": 0,
+    "diff_lines": 0,
+    "files_changed": 0,
+    "confidence_score": 0,
+    "status": ""
+  }
