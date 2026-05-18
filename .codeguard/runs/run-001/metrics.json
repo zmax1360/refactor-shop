@@ -1,0 +1,11 @@
+{
+    "token_input_estimate": 12000,
+    "token_output_estimate": 3500,
+    "prompt_reduction_estimate_percent": 18,
+    "duplicate_rules_removed": 9,
+    "compile_pass": false,
+    "tests_pass": false,
+    "retry_count": 0,
+    "files_modified": 3,
+    "status": "completed"
+  }
