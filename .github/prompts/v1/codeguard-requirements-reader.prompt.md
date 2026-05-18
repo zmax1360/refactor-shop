@@ -23,6 +23,16 @@ the user must run and set status to blocked_pending_terminal.
 
 You never assume something is implemented until you see evidence.
 
+## Output Rules
+
+Read and follow:
+.github/prompts/shared/output-rules.md
+
+## Shared Rules
+
+Read and follow:
+.github/prompts/shared/core-rules.md
+
 ═══════════════════════════════════════
 CODE REFERENCE RESOLUTION
 ═══════════════════════════════════════

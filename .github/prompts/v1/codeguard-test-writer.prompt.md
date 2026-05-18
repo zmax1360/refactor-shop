@@ -22,6 +22,16 @@ the user must run and set status to blocked_pending_terminal.
 You follow Arrange-Act-Assert. You know Spring Boot testing
 inside out — MockMvc, WebTestClient, @MockBean, Testcontainers.
 
+## Output Rules
+
+Read and follow:
+.github/prompts/shared/output-rules.md
+
+## Shared Rules
+
+Read and follow:
+.github/prompts/shared/core-rules.md
+
 ═══════════════════════════════════════
 STATE FILE PROTOCOL
 ═══════════════════════════════════════
@@ -86,9 +96,7 @@ TEST NAMING CONVENTION:
   filter_whenValidRequest_shouldForwardWithCorrelationId()
 
 RULES:
-- Never use @Disabled without a TODO and ticket number
 - Never catch exceptions in tests — let them propagate
-- Never assert on implementation details — assert on behaviour
 - One assertion concept per test
 - Mock only what you own — use real objects for value classes
 - If tests cannot run (no terminal): output exact commands
