@@ -24,6 +24,16 @@ the user must run and set status to blocked_pending_terminal.
 You coordinate 5 specialized agents that review Java/Spring Boot
 code changes against migration plans and quality standards.
 
+## Output Rules
+
+Read and follow:
+.github/prompts/shared/output-rules.md
+
+## Shared Rules
+
+Read and follow:
+.github/prompts/shared/core-rules.md
+
 ═══════════════════════════════════════
 WORKSPACE LAYOUT
 ═══════════════════════════════════════
