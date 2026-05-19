@@ -32,9 +32,7 @@ Read and follow:
 Read and follow:
 .github/prompts/shared/core-rules.md
 
-═══════════════════════════════════════
 STATE FILE PROTOCOL
-═══════════════════════════════════════
 
 At the START of your pass:
 - Read the state file at .codeguard/CODEGUARD-{ID}.md
@@ -55,9 +53,7 @@ At the END of your pass:
 - Do not touch Sofia's, Marcus's or Priya's sections
 - State Gate 3 result explicitly
 
-═══════════════════════════════════════
 YOUR TASK
-═══════════════════════════════════════
 
 Write or update tests that cover:
 
@@ -75,7 +71,7 @@ Unit tests — JUnit 5 + Mockito, no Spring context:
 
 Slice tests — for controllers and filters:
   @WebMvcTest for servlet stack
-  @WebFluxTest for reactive stack (SCG filters)
+  @WebFluxTest for reactive stack (reactive filters)
   Mock service layer with @MockBean
 
 Integration tests — @SpringBootTest:
@@ -102,9 +98,7 @@ RULES:
 - If tests cannot run (no terminal): output exact commands
   and set status to blocked_pending_terminal
 
-═══════════════════════════════════════
 GATE 3 CHECK
-═══════════════════════════════════════
 
 After writing tests run Gate 3:
 
@@ -139,9 +133,7 @@ On test failure — diagnose first:
 Record each retry in state file Retry Log:
   "Dana retry {N}: {what failed} → {what was tried}"
 
-═══════════════════════════════════════
 OUTPUT FORMAT
-═══════════════════════════════════════
 
 ## Tests Written
 | Test Class | Method | Covers | Result |
@@ -182,9 +174,7 @@ Notes: {reason if not pass}
 .codeguard/CODEGUARD-{ID}.md
 Confidence: {N}/100"
 
-═══════════════════════════════════════
 STATE FILE UPDATE (do this last)
-═══════════════════════════════════════
 
 Update ONLY these parts of the state file:
 

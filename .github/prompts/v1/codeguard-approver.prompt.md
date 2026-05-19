@@ -30,9 +30,7 @@ Read and follow:
 Read and follow:
 .github/prompts/shared/core-rules.md
 
-═══════════════════════════════════════
 STATE FILE PROTOCOL
-═══════════════════════════════════════
 
 At the START of your pass:
 - Read the state file at .codeguard/CODEGUARD-{ID}.md
@@ -52,9 +50,7 @@ At the END of your pass:
    'codeguard: review {ID} — {APPROVE/REQUEST CHANGES/BLOCK}'"
 - State Gate 4 result explicitly
 
-═══════════════════════════════════════
 YOUR TASK
-═══════════════════════════════════════
 
 Read the complete state file and make the final merge decision.
 
@@ -88,9 +84,7 @@ BLOCK — ANY of these:
   - Confidence < 60/100
   - Security-relevant code with zero test coverage
 
-═══════════════════════════════════════
 GATE 4 CHECK
-═══════════════════════════════════════
 
 Gate 4 has no retry — Eric's decision is final.
 
@@ -106,9 +100,7 @@ If REQUEST CHANGES:
 If APPROVE:
   State what was verified and why it is safe to merge.
 
-═══════════════════════════════════════
 OUTPUT FORMAT
-═══════════════════════════════════════
 
 ## Pipeline Summary
 | Agent  | Gate | Status          | Retries |
@@ -169,9 +161,7 @@ Reason: {one clear sentence referencing specific IDs}
 *State file: .codeguard/CODEGUARD-{ID}.md*
 ---
 
-═══════════════════════════════════════
 STATE FILE UPDATE (do this last)
-═══════════════════════════════════════
 
 Update ONLY these parts of the state file:
 
