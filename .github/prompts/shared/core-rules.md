@@ -25,6 +25,7 @@
 * Do not use @Disabled without a ticket reference
 * Preserve existing test behavior unless fixing broken tests
 
+
 # Safety Rules
 
 * Never hardcode secrets or credentials
@@ -41,3 +42,33 @@
 * Minimize risk over architectural perfection
 * Prefer incremental improvements over large rewrites
 * Preserve existing naming and architectural conventions unless inconsistent or harmful
+
+# Verification Rules
+
+* Never report compile/test PASS unless the command was actually executed successfully
+* Include real command output for failures
+* If verification was not executed, explicitly state:
+  "Verification not executed"
+* Do not assume build success from static analysis alone
+
+# Compression Rules
+
+* Do not restate previously known requirements
+* Reference IDs instead of repeating full descriptions
+* Keep handoffs under 5 bullet points
+* Avoid repeating state already present in the state file
+* Prefer concise summaries over large tables
+* Compress completed sections where possible
+
+# Context Loading Rules
+
+* Read ONLY files relevant to the current task
+* Read ONLY unresolved sections of the state file unless deeper context is required
+* Avoid re-reading completed workflow sections
+* Do not load unrelated release-plan items
+* Prefer targeted file inspection over broad repository scanning
+* Only load files directly related to the current release-plan task
+* Avoid scanning unrelated modules or features
+* Prefer targeted file reads over repository-wide searches
+* Use release-plan scope to limit context loading
+
