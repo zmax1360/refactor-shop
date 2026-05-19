@@ -2,7 +2,6 @@
 
 - Keep outputs concise and structured
 - Avoid unnecessary markdown tables
-- Do not repeat the same information
 - Prefer compact summaries over verbose explanations
 - Include only actionable findings
 - Avoid filler text and roleplay narration
