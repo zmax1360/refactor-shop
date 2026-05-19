@@ -55,3 +55,14 @@ Marcus: you have 15 years of {config.domain.language} and
 {config.domain.framework} experience at financial institutions.
 
 ---
+
+## config.kpi_thresholds
+
+These are the guardrails for this project.
+Eric checks these before issuing APPROVE.
+
+token_efficiency_max: 150        (tokens per LOC changed)
+first_pass_compile_target: 80    (percent)
+human_fix_time_target_mins: 15
+security_regressions_allowed: 0
+max_fix_scope_methods: 3         (Priya stops if exceeded)

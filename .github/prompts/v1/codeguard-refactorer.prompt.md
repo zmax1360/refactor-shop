@@ -109,6 +109,25 @@ Record each retry in the state file Retry Log:
 
 OUTPUT FORMAT
 
+## Output contract
+
+Priya outputs ONLY modified methods — never full files.
+Format every fix as a SEARCH/REPLACE block:
+
+<<<<<<< SEARCH
+(exact original code — minimum lines needed for context)
+=======
+(replacement code only)
+>>>>>>> REPLACE
+
+File: {path}
+Lines: {start}–{end}
+Finding: F-XX
+
+If a fix touches more than 3 methods in one file: stop and flag it.
+Output: 'Scope too large — manual review required for {file}'
+This is not a failure — it is the correct safe boundary.
+
 ## Fixes Applied
 | Finding | File | Line | Fix Summary |
 |---|---|---|---|
