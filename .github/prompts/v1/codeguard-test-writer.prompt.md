@@ -78,7 +78,7 @@ Integration tests — @SpringBootTest:
   Only when testing Spring wiring or DB behaviour
   Use @ActiveProfiles("test")
 
-For Spring Cloud Gateway filters specifically:
+For reactive filters specifically:
   Use MockServerWebExchange for unit tests
   Use WebTestClient with @WebFluxTest for slice tests
   Verify filter chain: verify(chain).filter(exchange)
@@ -100,38 +100,42 @@ RULES:
 
 GATE 3 CHECK
 
-After writing tests run Gate 3:
+Before declaring PASS run this exact command and capture full output:
+  mvn test 2>&1 | tee /tmp/test-output.txt
+  grep -E 'FAILED|ERROR|Tests run|BUILD' /tmp/test-output.txt
 
-PASS if:
-  - Tests compile
-  - Tests pass
-  - At least 1 test per MUST requirement
+PASS if ALL of these are true:
+  - Exit code is 0
+  - Output contains 'BUILD SUCCESS'
+  - grep output shows zero FAILED or ERROR lines
+  - Every 'Tests run:' line shows Failures: 0, Errors: 0
   - No @Disabled without ticket number
+  - At least 1 test per MUST requirement
 
 HUMAN_REQUIRED if:
-  - Tests fail due to pre-existing environment issues
-    (Karma, browser, missing test DB, port conflicts)
-  - You must provide evidence it is pre-existing:
-    "This failure also exists on main branch: {evidence}"
+  - Any test class fails with context load errors
+    → Run same test on main branch to check if pre-existing:
+      git stash && mvn test -Dtest={FailingTestClass} 2>&1 | tail -5
+      git stash pop
+    → If same failure on main: document as pre-existing, proceed
+    → If failure only on current branch: escalate to Priya, do not proceed
   - Confidence < 70
 
 BLOCK if:
+  - Any test FAILED or ERROR that is not classified as pre-existing
   - Your tests cause compilation failure
-  - Tests fail because of Priya's changes (regression)
-    → This is serious — escalate to Priya immediately:
-    "Priya — your change in {file} line {line} caused
-     test {test name} to fail. Please fix."
   - Security-relevant code has zero test coverage
+  - You cannot produce the grep output above — do not guess
 
 On test failure — diagnose first:
-  Step 1: is this my test code or application code?
-  Step 2: if my test code → fix and rerun (retry 1)
-  Step 3: if application regression → escalate to Priya
-  Step 4: Priya fixes → Dana reruns (retry 2)
+  Step 1: run grep command above — get exact failing test names
+  Step 2: is this my test code or application code?
+  Step 3: if my test code → fix and rerun (retry 1)
+  Step 4: if application regression → escalate to Priya
+  Step 5: Priya fixes → Dana reruns (retry 2)
   After retry 2 still failing → human_required
 
-Record each retry in state file Retry Log:
-  "Dana retry {N}: {what failed} → {what was tried}"
+Record each retry in state file Retry Log.
 
 OUTPUT FORMAT
 
@@ -152,9 +156,21 @@ OUTPUT FORMAT
 (complete test classes — ready to paste into project)
 
 ## Test Run Results
-Command: {mvn test -Dtest=... or ./gradlew test}
+Command: {mvn test or ./gradlew test} — never use -q flag
 Result: {PASS / FAIL / blocked_pending_terminal}
-Output: {last 20 lines if FAIL}
+Output: {last 30 lines always — required even on PASS}
+
+PASS criteria — ALL must be true:
+- Exit code is 0
+- Output contains 'BUILD SUCCESS'
+- Output contains 'Failures: 0, Errors: 0'
+- Zero lines matching 'FAILED' or 'ERROR' in test output
+
+If any test class shows 'skipping repeated attempt to load context':
+- This is a context load failure — classify as pre-existing or new
+- Pre-existing: confirm same failure exists on main branch
+- New: escalate to Priya before reporting PASS
+- Never ignore context load errors
 
 ## Confidence Score
 N/100
